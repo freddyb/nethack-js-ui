@@ -9,21 +9,82 @@
 <body>
     <script type="text/jsx">
 /** @jsx React.DOM */
-var {ButtonToolbar, Button} = ReactBootstrap;
-//var Button = ReactBootstrap.Button;
-var buttonsInstance = (
-    <div>
-      <ButtonToolbar>
-        <Button>...</Button>
-        <Button>#</Button>
-      </ButtonToolbar>
+var {ButtonToolbar, Button, MenuItem, DropdownButton} = ReactBootstrap;
 
-    </div>
-  );
+/*var KeyboardButton = React.createClass({
+  render: function() {
+    return (<Button title={this.props.title} onclick="pressKeyboard({this.props.key})">{this.props.key}</Button>);
+  }
+});*/
 
-React.renderComponent(buttonsInstance, document.getElementById('mountNode'));
+var ButtonList = React.createClass({
+  render: function() {
+    var i = 0;
+    var extendedButtons = this.props.extended.map(function(extcmd) {
+      return (
+          <MenuItem>{extcmd}</MenuItem>
+      );
+    });
+    var commandButtons = this.props.commands.map(function (button) {
+      return (
+        <Button>{button.key}</Button>
+      );
+    });
+
+    return (<ButtonToolbar>
+      <DropdownButton title="#" dropup>
+        {extendedButtons}
+      </DropdownButton>
+      {commandButtons}
+    </ButtonToolbar>
+    );
+  }
+});
+
+var extended = ['#adjust', '#chat', '#conduct', , '#dip', '#enhance',
+                '#force', '#invoke', '#jump', '#loot', '#monster',
+                '#name', '#offer', '#pray', '#quit', '#ride', '#rub ',
+                '#sit', '#turn', '#twoweapon', '#untrap', '#version',
+                '#wipe', '#log', '#?'];
+
+var keyboard = [{ 'key': '5s', 'description': 'search 5 times' },
+                { 'key': '.', 'description': 'rest' },
+                { 'key': ':', 'description': 'near look' },
+                { 'key': ';', 'description': 'far look' },
+                { 'key': ',', 'description': 'pick up' },
+                { 'key': 'e', 'description': 'eat' },
+                { 'key': 'd', 'description': 'drop' },
+                { 'key': 'r', 'description': 'read' },
+                { 'key': 'z', 'description': 'zap' },
+                { 'key': 'Z', 'description': 'spellcasting' },
+                { 'key': 'q', 'description': 'quaff' },
+                { 'key': 't', 'description': 'throw' },
+                { 'key': 'f', 'description': 'fire' },
+                { 'key': 'w', 'description': 'wield' },
+                { 'key': 'x', 'description': 'swap weapons' },
+                { 'key': 'i', 'description': 'inventory' },
+                { 'key': 'E', 'description': 'engrave' },
+                { 'key': 'Q', 'description': 'quiver' },
+                { 'key': 'P', 'description': 'put on' },
+                { 'key': 'R', 'description': 'remove' },
+                { 'key': 'W', 'description': 'wear' },
+                { 'key': 'T', 'description': 'take off' },
+                { 'key': 'o', 'description': 'open' },
+                { 'key': '^d', 'description': 'kick' },
+                { 'key': '^p', 'description': 'repeat previous message' },
+                { 'key': 'a', 'description': 'apply' },
+                { 'key': 'A', 'description': 'take off many' },
+                { 'key': '^t', 'description': 'teleport' },
+                { 'key': 'D', 'description': 'drop' },
+                { 'key': 'F', 'description': 'fight' },
+                { 'key': 'p', 'description': 'pay bill' },
+                { 'key': '^x', 'description': 'base attributes' },
+                { 'key': '?', 'description': 'help!' }]
+
+  React.renderComponent(<ButtonList extended={extended} commands={keyboard}></ButtonList>, document.getElementById('mountNode'));
   </script>                    
 
-<div id="mountNode">meh</div>
+<hr>
+<div id="mountNode"></div>
 </body>
 </html>
