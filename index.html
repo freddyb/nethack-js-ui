@@ -1,6 +1,7 @@
 <!doctype html5>
 <html>
 <head>
+<meta charset="utf-8">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/lib/react-with-addons-0.12.0.min.js"></script>
   <script src="js/lib/JSXTransformer-0.12.0.js"></script>
@@ -18,6 +19,19 @@ var {ButtonToolbar, Button, MenuItem, DropdownButton} = ReactBootstrap;
 });*/
 
 var ButtonList = React.createClass({
+  showKeyboard: function(e) {
+    keysink = document.getElementById("keysink");
+    keysink.focus();
+  },
+  commandClick: function(e) {
+    var key = e.target.dataset.key;
+    var keyToSend = key.substr(-1); // 'd' if 'd' and if '^d'
+    var ctrl = false;
+    if (key.startsWith("^")) {
+      ctrl = true;
+    }
+    keypress(key, ctrl);
+  },
   render: function() {
     var i = 0;
     var extendedButtons = this.props.extended.map(function(extcmd) {
@@ -25,13 +39,15 @@ var ButtonList = React.createClass({
           <MenuItem>{extcmd}</MenuItem>
       );
     });
+    var self = this;
     var commandButtons = this.props.commands.map(function (button) {
       return (
-        <Button>{button.key}</Button>
+        <Button onClick={self.commandClick} data-key={button.key}>{button.key}</Button>
       );
     });
 
     return (<ButtonToolbar>
+      <Button onClick={this.showKeyboard}>…</Button>
       <DropdownButton title="#" dropup>
         {extendedButtons}
       </DropdownButton>
@@ -85,6 +101,21 @@ var keyboard = [{ 'key': '5s', 'description': 'search 5 times' },
   </script>                    
 
 <hr>
-<div id="mountNode"></div>
+<input type="text" id="keysink" style="position: relative; width: 20px; left: -100px; "/>
+<div id="mountNode" style="position: relative; top: 200px;"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    keysink = document.getElementById("keysink");
+    keysink.addEventListener("keypress", function onkeypress(e) {
+        var chr = String.fromCharCode(e.charCode);
+        keypress(chr); // can we handle CTRL in here? maybe not :<
+    });
+});
+function keypress(c, ctrl) {
+    ctrl = !!ctrl;
+    console.log("KEY PRESS DETECTED:", c, "ctrl?", ctrl);
+}
+</script>
 </body>
 </html>
