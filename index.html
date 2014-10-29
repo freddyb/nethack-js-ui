@@ -2,10 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/lib/react-with-addons-0.12.0.min.js"></script>
   <script src="js/lib/JSXTransformer-0.12.0.js"></script>
   <script src="js/lib/react-bootstrap/react-bootstrap.min.js"></script>
+  <style>
+    .btn-toolbar {
+  width: 450%;
+  overflow-x: auto;
+}
+  </style>
 </head>
 <body>
     <script type="text/jsx">
@@ -31,6 +38,7 @@ var ButtonList = React.createClass({
       ctrl = true;
     }
     keypress(key, ctrl);
+    return true;
   },
   render: function() {
     var i = 0;
