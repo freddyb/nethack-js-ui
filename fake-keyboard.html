@@ -1,0 +1,25 @@
+<!doctype html5>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    input = document.getElementById("keysink");
+    input.addEventListener("keypress", function keypress(e) {
+        var chr = String.fromCharCode(e.charCode);
+        console.log("key pressed:", chr);
+        //XXX redirect press of chr
+    });
+
+    btn = document.getElementById("showKeyboard");
+    btn.onclick = function(e) {
+        input.focus();
+    }
+});
+</script>
+
+</head>
+<body>
+<input type="text" id="keysink" style="position: relative; width: 20px; left: -100px; "/>
+<button id="showKeyboard">…</button>
+</body></html>
