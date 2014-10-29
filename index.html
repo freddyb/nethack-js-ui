@@ -1,0 +1,29 @@
+<!doctype html5>
+<html>
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/lib/react-with-addons-0.12.0.min.js"></script>
+  <script src="js/lib/JSXTransformer-0.12.0.js"></script>
+  <script src="js/lib/react-bootstrap/react-bootstrap.min.js"></script>
+</head>
+<body>
+    <script type="text/jsx">
+/** @jsx React.DOM */
+var {ButtonToolbar, Button} = ReactBootstrap;
+//var Button = ReactBootstrap.Button;
+var buttonsInstance = (
+    <div>
+      <ButtonToolbar>
+        <Button>...</Button>
+        <Button>#</Button>
+      </ButtonToolbar>
+
+    </div>
+  );
+
+React.renderComponent(buttonsInstance, document.getElementById('mountNode'));
+  </script>                    
+
+<div id="mountNode">meh</div>
+</body>
+</html>
