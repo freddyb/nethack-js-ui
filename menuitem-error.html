@@ -1,0 +1,28 @@
+<!doctype html5>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/lib/react-with-addons-0.12.0.min.js"></script>
+  <script src="js/lib/JSXTransformer-0.12.0.js"></script>
+  <script src="js/lib/react-bootstrap/react-bootstrap.js"></script>
+
+
+</head><body>
+<div id="mountNode" style="position: relative; top: 200px;"></div>
+
+
+<script type="text/jsx">
+/** @jsx React.DOM */
+
+var {ButtonToolbar, MenuItem, DropdownButton} = ReactBootstrap;
+  
+  React.renderComponent((<DropdownButton title="foo" dropup>
+  <MenuItem key="1">foo</MenuItem>
+  <MenuItem key="2">bar</MenuItem>
+  </DropdownButton>),
+   document.getElementById("mountNode"));   
+    </script>
+</body>
+</html>
