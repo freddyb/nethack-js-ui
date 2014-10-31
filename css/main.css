@@ -1,0 +1,5 @@
+.btn-toolbar {
+    /* button toolbar as one long horizontal line */
+    min-width: 100%;
+    white-space: nowrap;
+}
